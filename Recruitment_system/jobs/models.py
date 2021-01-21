@@ -1,5 +1,6 @@
-
+# coding=gbk
 from django.db import models
+from datetime import datetime
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -18,12 +19,17 @@ Cities = [
     (4, "广州")
 ]
 
+
 class Job(models.Model):
     job_type = models.SmallIntegerField(blank=False, choices=JobTypes, verbose_name="职位列表")
     job_name = models.CharField(max_length=250, blank=False, verbose_name="职位名称")
     job_city = models.SmallIntegerField(choices=Cities, blank=False, verbose_name="工作地点")
     job_responsibility = models.TextField(max_length=1024, verbose_name="职位职责")
     job_requirement = models.TextField(max_length=1024, blank=False, verbose_name="职位要求")
-    creator = models.ForeignKey(User, verbose_name="创建人", on_delete=None)  # 外键引用
-    created_date = models.DateTimeField(verbose_name="创建日期")
-    modified_date = models.DateTimeField(verbose_name="修改时间")
+    creator = models.ForeignKey(User, verbose_name="创建人", null=True, on_delete=models.SET_NULL)  # 外键引用
+    created_date = models.DateTimeField(verbose_name="创建日期", default=datetime.now)
+    modified_date = models.DateTimeField(verbose_name="修改时间", default=datetime.now)
+
+
+class NaMei(models.Model):
+    onepiece_performer = models.TextField(max_length=1024, verbose_name='演员简介')
