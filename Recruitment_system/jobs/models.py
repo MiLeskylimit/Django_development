@@ -33,3 +33,4 @@ class Job(models.Model):
 
 class NaMei(models.Model):
     onepiece_performer = models.TextField(max_length=1024, verbose_name='ÑÝÔ±¼ò½é')
+

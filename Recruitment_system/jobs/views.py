@@ -29,4 +29,5 @@ def detail(request, job_id):
     except Job.DoesNotExist:
         raise Http404("Job does not exist")
 
-    return render(request, 'job.html', {'job': job_id})
+    return render(request, 'job.html', {'jobs': job_id})
+
